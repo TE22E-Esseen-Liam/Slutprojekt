@@ -17,6 +17,7 @@ class Program
         bool startScreen = true;
         bool endScreen = false;
 
+
         Raylib.SetTargetFPS(60);
 
         while (!Raylib.WindowShouldClose())
