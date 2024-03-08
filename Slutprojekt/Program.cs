@@ -4,6 +4,8 @@ class Program
 {
     static void Main()
     {
+        bool fullscreen = false;
+
         Raylib.InitWindow(800, 600, "Start of game");
 
         int square1X = 300;
@@ -17,8 +19,10 @@ class Program
         bool startScreen = true;
         bool endScreen = false;
 
-
         Raylib.SetTargetFPS(60);
+
+        Texture2D background = Raylib.LoadTexture("gotham.png");
+
 
         while (!Raylib.WindowShouldClose())
         {
@@ -32,9 +36,13 @@ class Program
 
                 Raylib.EndDrawing();
 
-                // Check for Enter key to start the game
+                // Check for Enter key to start the game and toggle full-screen
                 if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
+                {
                     startScreen = false;
+                    fullscreen = !fullscreen;
+                    Raylib.ToggleFullscreen();
+                }
 
                 continue; // Skip the game loop until the player starts the game
             }
@@ -83,17 +91,19 @@ class Program
             }
             //**********************************************
             
-            //DRAWING********************************************************************
+            // DRAWING ********************************************************************
             Raylib.BeginDrawing();
-            Raylib.ClearBackground(Color.BLUE);
-
+            
+            // Draw background image
+            Raylib.DrawTexture(background, 0, 0, Color.WHITE);
+            
+            // Draw rectangles
             Raylib.DrawRectangle(square1X, square1Y, 50, 50, Color.RAYWHITE);
             Raylib.DrawRectangle(square2X, square2Y, 50, 50, Color.RAYWHITE);
-
+            
             Raylib.EndDrawing();
-            //DRAWING********************************************************************
+            // DRAWING ********************************************************************
         }
-
         Raylib.CloseWindow();
     }
 }
