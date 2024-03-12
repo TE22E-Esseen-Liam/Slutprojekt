@@ -22,3 +22,5 @@ c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\obj\Debug\n
 c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\obj\Debug\net7.0\ref\Slutprojekt.dll
 c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\net7.0\sfsfsfsfs.png
 c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\net7.0\gotham.png
+c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\net7.0\batman.png
+c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\net7.0\supermanfin.png

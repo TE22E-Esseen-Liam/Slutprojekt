@@ -6,12 +6,13 @@ class Program
     {
         bool fullscreen = false;
 
-        Raylib.InitWindow(800, 600, "Start of game");
+        Raylib.InitWindow(1920, 1080, "Start of game");
 
-        int square1X = 300;
-        int square1Y = 300;
-        int square2X = 300;
-        int square2Y = 300;
+        int batmanX = 300;
+        int batmanY = 600;
+
+        int supermanX = 600;
+        int supermanY = 300;
 
         int player1HP = 100;
         int player2HP = 100;
@@ -22,7 +23,8 @@ class Program
         Raylib.SetTargetFPS(60);
 
         Texture2D background = Raylib.LoadTexture("gotham.png");
-
+        Texture2D batman = Raylib.LoadTexture("batman.png");
+        Texture2D superman = Raylib.LoadTexture("supermanfin.png");
 
         while (!Raylib.WindowShouldClose())
         {
@@ -32,7 +34,7 @@ class Program
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.BLACK);
 
-                Raylib.DrawText("Press Enter to Start", 250, 250, 30, Color.WHITE);
+                Raylib.DrawText("Press Enter to Start", 670, 400, 50, Color.WHITE);
 
                 Raylib.EndDrawing();
 
@@ -62,15 +64,17 @@ class Program
 
 
             // MOVEMENT ****************************************************************************************
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT)) square1X += 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT)) square1X -= 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_UP)) square1Y -= 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN)) square1Y += 5;
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_D)) square2X += 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_A)) square2X -= 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_W)) square2Y -= 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_S)) square2Y += 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT)) batmanX += 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT)) batmanX -= 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_UP)) batmanY -= 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN)) batmanY += 5;
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_D)) supermanX += 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_A)) supermanX -= 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_W)) supermanY -= 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_S)) supermanY += 5;
+
             // MOVEMENT ****************************************************************************************
 
 
@@ -96,10 +100,9 @@ class Program
             
             // Draw background image
             Raylib.DrawTexture(background, 0, 0, Color.WHITE);
-            
-            // Draw rectangles
-            Raylib.DrawRectangle(square1X, square1Y, 50, 50, Color.RAYWHITE);
-            Raylib.DrawRectangle(square2X, square2Y, 50, 50, Color.RAYWHITE);
+            Raylib.DrawTexture(batman, batmanX, batmanY, Color.WHITE);
+            Raylib.DrawTexture(superman, supermanX, supermanY, Color.WHITE);           
+        
             
             Raylib.EndDrawing();
             // DRAWING ********************************************************************

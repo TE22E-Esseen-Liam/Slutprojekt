@@ -14,6 +14,10 @@
     <Content Include="*.gif" CopyToOutputDirectory="Always"/>
   </ItemGroup>
 
+    <ItemGroup>
+    <Content Include="*.jpg" CopyToOutputDirectory="Always"/>
+    </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Raylib-cs" Version="5.0.0" />
   </ItemGroup>

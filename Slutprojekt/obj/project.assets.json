@@ -134,11 +134,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\liam.esseen\\Documents\\Programmering\\Slutprojekt\\Slutprojekt\\Slutprojekt.csproj",
+      "projectUniqueName": "C:\\Users\\liam.esseen\\Documents\\Programmering\\Slutprojekt\\Slutprojekt\\Slutprojekt.csproj",
       "projectName": "Slutprojekt",
-      "projectPath": "c:\\Users\\liam.esseen\\Documents\\Programmering\\Slutprojekt\\Slutprojekt\\Slutprojekt.csproj",
+      "projectPath": "C:\\Users\\liam.esseen\\Documents\\Programmering\\Slutprojekt\\Slutprojekt\\Slutprojekt.csproj",
       "packagesPath": "C:\\Users\\liam.esseen\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\liam.esseen\\Documents\\Programmering\\Slutprojekt\\Slutprojekt\\obj\\",
+      "outputPath": "C:\\Users\\liam.esseen\\Documents\\Programmering\\Slutprojekt\\Slutprojekt\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -192,7 +192,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.405\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.406\\RuntimeIdentifierGraph.json"
       }
     }
   }
