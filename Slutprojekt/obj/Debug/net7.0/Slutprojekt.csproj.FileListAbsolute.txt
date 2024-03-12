@@ -24,3 +24,5 @@ c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\n
 c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\net7.0\gotham.png
 c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\net7.0\batman.png
 c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\net7.0\supermanfin.png
+c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\net7.0\healthbar.png
+c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\net7.0\healthbarV.png

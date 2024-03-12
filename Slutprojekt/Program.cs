@@ -8,13 +8,13 @@ class Program
 
         Raylib.InitWindow(1920, 1080, "Start of game");
 
-        int batmanX = 300;
+        int batmanX = 200;
         int batmanY = 600;
 
-        int supermanX = 600;
-        int supermanY = 300;
+        int supermanX = 320;
+        int supermanY = 400;
 
-        int player1HP = 100;
+        int player1HP = 500;
         int player2HP = 100;
 
         bool startScreen = true;
@@ -25,6 +25,8 @@ class Program
         Texture2D background = Raylib.LoadTexture("gotham.png");
         Texture2D batman = Raylib.LoadTexture("batman.png");
         Texture2D superman = Raylib.LoadTexture("supermanfin.png");
+        Texture2D healthbar = Raylib.LoadTexture("healthbar.png");
+        Texture2D healthbarV = Raylib.LoadTexture("healthbarV.png");        
 
         while (!Raylib.WindowShouldClose())
         {
@@ -101,7 +103,10 @@ class Program
             // Draw background image
             Raylib.DrawTexture(background, 0, 0, Color.WHITE);
             Raylib.DrawTexture(batman, batmanX, batmanY, Color.WHITE);
-            Raylib.DrawTexture(superman, supermanX, supermanY, Color.WHITE);           
+            Raylib.DrawTexture(superman, supermanX, supermanY, Color.WHITE); 
+            Raylib.DrawRectangle(90, 70, 320, 32, Color.LIME);
+            Raylib.DrawTexture(healthbar, 0, 0, Color.WHITE);
+            Raylib.DrawTexture(healthbarV, 1470, 0, Color.WHITE);
         
             
             Raylib.EndDrawing();
