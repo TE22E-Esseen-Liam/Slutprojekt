@@ -9,13 +9,13 @@ class Program
         Raylib.InitWindow(1920, 1080, "Start of game");
 
         int batmanX = 200;
-        int batmanY = 600;
+        int batmanY = 700;
 
-        int supermanX = 320;
-        int supermanY = 400;
+        int supermanX = 1200;
+        int supermanY = 550;
 
-        int player1HP = 500;
-        int player2HP = 100;
+        int player1HP = 320;
+        int player2HP = 320;
 
         bool startScreen = true;
         bool endScreen = false;
@@ -26,7 +26,15 @@ class Program
         Texture2D batman = Raylib.LoadTexture("batman.png");
         Texture2D superman = Raylib.LoadTexture("supermanfin.png");
         Texture2D healthbar = Raylib.LoadTexture("healthbar.png");
-        Texture2D healthbarV = Raylib.LoadTexture("healthbarV.png");        
+        Texture2D healthbarV = Raylib.LoadTexture("healthbarV.png");      
+
+        batman.Width = 200;
+        batman.Height = 200;
+
+        superman.Width = 200;
+        superman.Height = 200;
+
+
 
         while (!Raylib.WindowShouldClose())
         {
@@ -48,7 +56,7 @@ class Program
                     Raylib.ToggleFullscreen();
                 }
 
-                continue; // Skip the game loop until the player starts the game
+                continue;
             }
 
             if (endScreen)
@@ -67,28 +75,28 @@ class Program
 
             // MOVEMENT ****************************************************************************************
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT)) batmanX += 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT)) batmanX -= 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_UP)) batmanY -= 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN)) batmanY += 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT)) supermanX += 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT)) supermanX -= 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_UP)) supermanY -= 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN)) supermanY += 5;
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_D)) supermanX += 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_A)) supermanX -= 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_W)) supermanY -= 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_S)) supermanY += 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_D)) batmanX += 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_A)) batmanX -= 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_W)) batmanY -= 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_S)) batmanY += 5;
 
             // MOVEMENT ****************************************************************************************
 
 
             //**********************************************
-            player1HP = 100;
+            player1HP = 320;
 
             if (player1HP < 1)
             {
                 endScreen = true;
                 continue;
             }
-            player2HP = 100;
+            player2HP = 320;
 
             if (player2HP < 1)
             {
@@ -104,7 +112,8 @@ class Program
             Raylib.DrawTexture(background, 0, 0, Color.WHITE);
             Raylib.DrawTexture(batman, batmanX, batmanY, Color.WHITE);
             Raylib.DrawTexture(superman, supermanX, supermanY, Color.WHITE); 
-            Raylib.DrawRectangle(90, 70, 320, 32, Color.LIME);
+            Raylib.DrawRectangle(90, 70, player1HP, 32, Color.LIME);
+            Raylib.DrawRectangle(1514, 70, player2HP, 32, Color.LIME);
             Raylib.DrawTexture(healthbar, 0, 0, Color.WHITE);
             Raylib.DrawTexture(healthbarV, 1470, 0, Color.WHITE);
         
