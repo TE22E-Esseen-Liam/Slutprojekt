@@ -9,10 +9,10 @@ class Program
         Raylib.InitWindow(1920, 1080, "Start of game");
 
         int batmanX = 200;
-        int batmanY = 700;
+        int batmanY = 1000;
 
         int supermanX = 1200;
-        int supermanY = 550;
+        int supermanY = 1000;
 
         int player1HP = 320;
         int player2HP = 320;
@@ -24,7 +24,7 @@ class Program
 
         Raylib.SetTargetFPS(60);
 
-        Texture2D background = Raylib.LoadTexture("gotham.png");
+        Texture2D background = Raylib.LoadTexture("gothamfinal.png");
         Texture2D batman = Raylib.LoadTexture("batman.png");
         Texture2D superman = Raylib.LoadTexture("supermanfin.png");
         Texture2D healthbar = Raylib.LoadTexture("healthbar.png");
@@ -35,8 +35,6 @@ class Program
 
         superman.Width = 200;
         superman.Height = 200;
-
-        int hpLossPerFrame = 1;
 
         while (!Raylib.WindowShouldClose())
         {
@@ -106,12 +104,19 @@ class Program
             if (Raylib.IsKeyDown(KeyboardKey.KEY_W)) batmanY -= 5;
             if (Raylib.IsKeyDown(KeyboardKey.KEY_S)) batmanY += 5;
 
+            // Ensure Batman and Superman stay above ground level
+            if (supermanY + superman.Height > 970)
+                supermanY = 970 - superman.Height;
+
+            if (batmanY + batman.Height > 1000)
+                batmanY = 1000 - batman.Height;
+
             // MOVEMENT ****************************************************************************************
 
 
             //**********************************************
-            player1HP -= hpLossPerFrame;
-            player2HP -= hpLossPerFrame;          
+            //player1HP -= hpLossPerFrame;
+            //player2HP -= hpLossPerFrame;          
 
             if (player1HP < 1 && player2HP >= 1)
             {
