@@ -46,6 +46,8 @@ class Program
         superman.Width = 200;
         superman.Height = 200;
 
+        Random random = new Random();
+
         while (!Raylib.WindowShouldClose())
         {
             if (startScreen)
@@ -58,7 +60,7 @@ class Program
 
                 Raylib.EndDrawing();
 
-                // Check for Enter key to start the game and toggle full-screen
+
                 if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
                 {
                     startScreen = false;
@@ -109,7 +111,7 @@ class Program
             if (Raylib.IsKeyDown(KeyboardKey.KEY_UP)) supermanY -= 5;
             if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN)) supermanY += 5;
 
-            // Set Batman's X position based on key presses and toggle running state
+
             if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
             {
                 batmanX += 5;
@@ -122,27 +124,34 @@ class Program
             }
             else
             {
-                batmanRunning = false; // Reset Batman's running state if no movement keys are pressed
+                batmanRunning = false;
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_W)) batmanY -= 5;
             if (Raylib.IsKeyDown(KeyboardKey.KEY_S)) batmanY += 5;
 
-            // Ensure Batman and Superman stay above ground level
+
             if (supermanY + superman.Height > 970)
                 supermanY = 970 - superman.Height;
 
             if (batmanY + batman.Height > 985)
                 batmanY = 985 - batman.Height;
 
-            // Check for left shift key press to toggle Batman's punch
+
             if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT_SHIFT))
             {
                 batmanPunching = true;
+
             }
             else
             {
                 batmanPunching = false;
+            }
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT_SHIFT))
+            {
+                int damage = random.Next(1, 5);
+                player2HP -= damage;
             }
 
             // MOVEMENT ****************************************************************************************
@@ -175,7 +184,6 @@ class Program
             // Draw background image
             Raylib.DrawTexture(background, 0, 0, Color.WHITE);
             
-            // Draw Batman texture based on punching state and running state
             if (batmanPunching)
                 Raylib.DrawTexture(batmanPunch, batmanX, batmanY, Color.WHITE);
             else if (batmanRunning)
