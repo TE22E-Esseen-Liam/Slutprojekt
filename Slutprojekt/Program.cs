@@ -18,7 +18,9 @@ class Program
         int player2HP = 320;
 
         bool startScreen = true;
-        bool endScreen = false;
+        bool endScreen1 = false;
+        bool endScreen2 = false;
+        bool drawScreen = false;
 
         Raylib.SetTargetFPS(60);
 
@@ -26,7 +28,7 @@ class Program
         Texture2D batman = Raylib.LoadTexture("batman.png");
         Texture2D superman = Raylib.LoadTexture("supermanfin.png");
         Texture2D healthbar = Raylib.LoadTexture("healthbar.png");
-        Texture2D healthbarV = Raylib.LoadTexture("healthbarV.png");      
+        Texture2D healthbarV = Raylib.LoadTexture("healthbarV.png");
 
         batman.Width = 200;
         batman.Height = 200;
@@ -34,7 +36,7 @@ class Program
         superman.Width = 200;
         superman.Height = 200;
 
-
+        int hpLossPerFrame = 1;
 
         while (!Raylib.WindowShouldClose())
         {
@@ -59,19 +61,38 @@ class Program
                 continue;
             }
 
-            if (endScreen)
+            if (endScreen1 || endScreen2 || drawScreen)
             {
-                // End Screen
+                // Game Over Screens
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.RED);
 
-                Raylib.DrawText("Game Over!", 300, 250, 30, Color.WHITE);
+                if (endScreen1)
+                    Raylib.DrawText("Game Over! Superman Won!", 715, 250, 45, Color.WHITE);
+
+                else if (endScreen2)
+                    Raylib.DrawText("Game Over! Batman Won!", 715, 250, 45, Color.WHITE);
+
+                else if (drawScreen)
+                    Raylib.DrawText("Game Over! It's a draw!", 715, 250, 45, Color.WHITE);
+
+                Raylib.DrawText("Press R to Restart", 800, 550, 30, Color.WHITE);
 
                 Raylib.EndDrawing();
 
-                continue; // Skip the game loop if the game has ended
-            }
 
+                if (Raylib.IsKeyPressed(KeyboardKey.KEY_R))
+                {
+
+                    endScreen1 = false;
+                    endScreen2 = false;
+                    drawScreen = false;
+                    player1HP = 320;
+                    player2HP = 320;
+                }
+
+                continue;
+            }
 
             // MOVEMENT ****************************************************************************************
 
@@ -89,35 +110,41 @@ class Program
 
 
             //**********************************************
-            player1HP = 320;
+            player1HP -= hpLossPerFrame;
+            player2HP -= hpLossPerFrame;          
 
-            if (player1HP < 1)
+            if (player1HP < 1 && player2HP >= 1)
             {
-                endScreen = true;
+                endScreen1 = true;
                 continue;
             }
-            player2HP = 320;
-
-            if (player2HP < 1)
+            else if (player2HP < 1 && player1HP >= 1)
             {
-                endScreen = true;
+                endScreen2 = true;
+                continue;
+            }
+            else if (player1HP < 1 && player2HP < 1)
+            {
+                drawScreen = true;
                 continue;
             }
             //**********************************************
-            
+
             // DRAWING ********************************************************************
             Raylib.BeginDrawing();
-            
+
             // Draw background image
             Raylib.DrawTexture(background, 0, 0, Color.WHITE);
             Raylib.DrawTexture(batman, batmanX, batmanY, Color.WHITE);
-            Raylib.DrawTexture(superman, supermanX, supermanY, Color.WHITE); 
+            Raylib.DrawTexture(superman, supermanX, supermanY, Color.WHITE);
             Raylib.DrawRectangle(90, 70, player1HP, 32, Color.LIME);
             Raylib.DrawRectangle(1514, 70, player2HP, 32, Color.LIME);
             Raylib.DrawTexture(healthbar, 0, 0, Color.WHITE);
             Raylib.DrawTexture(healthbarV, 1470, 0, Color.WHITE);
-        
-            
+            Raylib.DrawText($"Health: {player1HP}", 100, 110, 30, Color.WHITE);
+            Raylib.DrawText($"Health: {player2HP}", 1650, 110, 30, Color.WHITE);
+
+
             Raylib.EndDrawing();
             // DRAWING ********************************************************************
         }
