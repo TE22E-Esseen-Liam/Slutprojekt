@@ -1,4 +1,5 @@
-﻿using Raylib_cs;
+﻿using System;
+using Raylib_cs;
 
 class Program
 {
@@ -23,16 +24,20 @@ class Program
         bool drawScreen = false;
         bool batmanPunching = false;
         bool batmanRunning = false;
+        bool supermanPunching = false;
 
         Raylib.SetTargetFPS(60);
 
         Texture2D background = Raylib.LoadTexture("gothamfinal.png");
         Texture2D batman = Raylib.LoadTexture("batmanstand.png");
+        Texture2D startscreen2 = Raylib.LoadTexture("batmanVSsuperman1.png");
         Texture2D batmanPunch = Raylib.LoadTexture("batmanpunch1.png");
         Texture2D batmanRun = Raylib.LoadTexture("batmanrun.png");
         Texture2D superman = Raylib.LoadTexture("supermanfin.png");
+        Texture2D supermanPunch = Raylib.LoadTexture("supermanPunch1.png");
         Texture2D healthbar = Raylib.LoadTexture("healthbar.png");
         Texture2D healthbarV = Raylib.LoadTexture("healthbarV.png");
+        Texture2D BatmanRunLeftTexture = Raylib.LoadTexture("BatmanRunLeft.png");
 
         batman.Width = 200;
         batman.Height = 200;
@@ -46,6 +51,9 @@ class Program
         superman.Width = 200;
         superman.Height = 200;
 
+        supermanPunch.Width = 200;
+        supermanPunch.Height = 200;
+
         Random random = new Random();
 
         while (!Raylib.WindowShouldClose())
@@ -54,8 +62,7 @@ class Program
             {
                 // Start Screen
                 Raylib.BeginDrawing();
-                Raylib.ClearBackground(Color.BLACK);
-
+                Raylib.DrawTexture(startscreen2, 0, 0, Color.WHITE);
                 Raylib.DrawText("Press Enter to Start", 670, 400, 50, Color.WHITE);
 
                 Raylib.EndDrawing();
@@ -130,29 +137,44 @@ class Program
             if (Raylib.IsKeyDown(KeyboardKey.KEY_W)) batmanY -= 5;
             if (Raylib.IsKeyDown(KeyboardKey.KEY_S)) batmanY += 5;
 
-
             if (supermanY + superman.Height > 970)
                 supermanY = 970 - superman.Height;
 
             if (batmanY + batman.Height > 985)
                 batmanY = 985 - batman.Height;
 
-
             if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT_SHIFT))
             {
                 batmanPunching = true;
-
             }
             else
             {
                 batmanPunching = false;
             }
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT_SHIFT))
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_LEFT_SHIFT))
             {
-                int damage = random.Next(1, 5);
+                int damage = random.Next(10, 50);
                 player2HP -= damage;
             }
+
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT_SHIFT))
+            {
+                supermanPunching = true;
+            }
+            else
+            {
+                supermanPunching = false;
+            }
+
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_RIGHT_SHIFT))
+            {
+                int damage = random.Next(10, 50);
+                player1HP -= damage;
+            }
+
+
 
             // MOVEMENT ****************************************************************************************
 
@@ -183,15 +205,20 @@ class Program
 
             // Draw background image
             Raylib.DrawTexture(background, 0, 0, Color.WHITE);
-            
+
+            if (supermanPunching)
+                Raylib.DrawTexture(supermanPunch, supermanX, supermanY, Color.WHITE);
+            else
+                Raylib.DrawTexture(superman, supermanX, supermanY, Color.WHITE);
+
             if (batmanPunching)
                 Raylib.DrawTexture(batmanPunch, batmanX, batmanY, Color.WHITE);
             else if (batmanRunning)
                 Raylib.DrawTexture(batmanRun, batmanX, batmanY, Color.WHITE);
             else
                 Raylib.DrawTexture(batman, batmanX, batmanY, Color.WHITE);
-            
-            Raylib.DrawTexture(superman, supermanX, supermanY, Color.WHITE);
+
+            Raylib.DrawTexture(BatmanRunLeftTexture, batmanX, batmanY, Color.WHITE);
             Raylib.DrawRectangle(90, 70, player1HP, 32, Color.LIME);
             Raylib.DrawRectangle(1514, 70, player2HP, 32, Color.LIME);
             Raylib.DrawTexture(healthbar, 0, 0, Color.WHITE);

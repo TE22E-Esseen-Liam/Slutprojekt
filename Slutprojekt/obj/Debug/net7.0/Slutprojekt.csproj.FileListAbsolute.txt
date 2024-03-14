@@ -27,3 +27,5 @@ c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\n
 c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\net7.0\batmanstand.png
 c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\net7.0\batmanrun.png
 c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\net7.0\gothamfinal.png
+c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\net7.0\supermanPunch1.png
+c:\Users\liam.esseen\Documents\Programmering\Slutprojekt\Slutprojekt\bin\Debug\net7.0\batmanVSsuperman1.png
