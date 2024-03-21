@@ -9,7 +9,7 @@ class Program
 
         Raylib.InitWindow(1920, 1080, "Start of game");
 
-        int batmanX = 200;
+        int batmanX = 500;
         int batmanY = 1000;
 
         int supermanX = 1200;
@@ -17,6 +17,9 @@ class Program
 
         int player1HP = 320;
         int player2HP = 320;
+
+        int score1 = 0;
+        int score2 = 0;
 
         bool startScreen = true;
         bool endScreen1 = false;
@@ -26,7 +29,7 @@ class Program
         bool batmanRunning = false;
         bool supermanPunching = false;
 
-        Raylib.SetTargetFPS(60);
+        Raylib.SetTargetFPS(59);
 
         Texture2D background = Raylib.LoadTexture("gothamfinal.png");
         Texture2D batman = Raylib.LoadTexture("batmanstand.png");
@@ -38,6 +41,7 @@ class Program
         Texture2D healthbar = Raylib.LoadTexture("healthbar.png");
         Texture2D healthbarV = Raylib.LoadTexture("healthbarV.png");
         Texture2D BatmanRunLeftTexture = Raylib.LoadTexture("BatmanRunLeft.png");
+
 
         batman.Width = 200;
         batman.Height = 200;
@@ -86,12 +90,17 @@ class Program
 
                 if (endScreen1)
                     Raylib.DrawText("Game Over! Superman Won!", 715, 250, 45, Color.WHITE);
+                    Raylib.DrawText($"{score1} - {score2}", 1650, 110, 30, Color.WHITE);
+                    score2++
 
                 else if (endScreen2)
                     Raylib.DrawText("Game Over! Batman Won!", 715, 250, 45, Color.WHITE);
+                    Raylib.DrawText($"{score1} - {score2}", 1650, 110, 30, Color.WHITE);
+                    score1 = +1;
 
                 else if (drawScreen)
                     Raylib.DrawText("Game Over! It's a draw!", 715, 250, 45, Color.WHITE);
+                    Raylib.DrawText($"{score1} - {score2}", 1650, 110, 30, Color.WHITE);
 
                 Raylib.DrawText("Press R to Restart", 800, 550, 30, Color.WHITE);
 
@@ -106,6 +115,10 @@ class Program
                     drawScreen = false;
                     player1HP = 320;
                     player2HP = 320;
+                    batmanX = 500;
+                    batmanY = 1000;
+                    supermanX = 1200;
+                    supermanY = 1000;
                 }
 
                 continue;
@@ -179,9 +192,7 @@ class Program
             // MOVEMENT ****************************************************************************************
 
 
-            //**********************************************
-            //player1HP -= hpLossPerFrame;
-            //player2HP -= hpLossPerFrame;          
+            //**********************************************         
 
             if (player1HP < 1 && player2HP >= 1)
             {
