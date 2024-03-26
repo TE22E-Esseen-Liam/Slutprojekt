@@ -20,6 +20,8 @@ class Program
 
         int score1 = 0;
         int score2 = 0;
+        int scoreinc = 1;
+
 
         bool startScreen = true;
         bool endScreen1 = false;
@@ -89,22 +91,35 @@ class Program
                 Raylib.ClearBackground(Color.RED);
 
                 if (endScreen1)
-                    Raylib.DrawText("Game Over! Superman Won!", 715, 250, 45, Color.WHITE);
-                    Raylib.DrawText($"{score1} - {score2}", 1650, 110, 30, Color.WHITE);
-                    score2++
+                {
+                    Raylib.DrawText("Superman Won!", 760, 250, 45, Color.WHITE);
+                    Raylib.DrawText($"{score1} - {score2}", 880, 350, 45, Color.WHITE);
+                    for (int i = 0; i < scoreinc; i++)
+                    {
+                        score2 = score1 + 1;
+                    }
+                }
 
                 else if (endScreen2)
-                    Raylib.DrawText("Game Over! Batman Won!", 715, 250, 45, Color.WHITE);
-                    Raylib.DrawText($"{score1} - {score2}", 1650, 110, 30, Color.WHITE);
-                    score1 = +1;
+                {
+                    Raylib.DrawText("Batman Won!", 810, 250, 45, Color.WHITE);
+                    Raylib.DrawText($"{score1} - {score2}", 790, 350, 45, Color.WHITE);
+                    for (int i = 0; i < scoreinc; i++)
+                    {
+                        score1 = score2 + 1;
+                    }
+                }
 
                 else if (drawScreen)
-                    Raylib.DrawText("Game Over! It's a draw!", 715, 250, 45, Color.WHITE);
-                    Raylib.DrawText($"{score1} - {score2}", 1650, 110, 30, Color.WHITE);
+                {
+                    Raylib.DrawText("It's a draw!", 810, 250, 45, Color.WHITE);
+                    Raylib.DrawText($"{score1} - {score2}", 790, 350, 45, Color.WHITE);
+                }
 
-                Raylib.DrawText("Press R to Restart", 800, 550, 30, Color.WHITE);
+                Raylib.DrawText("Press R to Start next Round", 720, 550, 30, Color.WHITE);
 
                 Raylib.EndDrawing();
+
 
 
                 if (Raylib.IsKeyPressed(KeyboardKey.KEY_R))
