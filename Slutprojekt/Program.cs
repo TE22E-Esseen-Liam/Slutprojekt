@@ -20,7 +20,7 @@ class Program
 
         int score1 = 0;
         int score2 = 0;
-        int scoreinc = 1;
+
 
 
         bool startScreen = true;
@@ -92,22 +92,18 @@ class Program
 
                 if (endScreen1)
                 {
+
                     Raylib.DrawText("Superman Won!", 760, 250, 45, Color.WHITE);
                     Raylib.DrawText($"{score1} - {score2}", 880, 350, 45, Color.WHITE);
-                    for (int i = 0; i < scoreinc; i++)
-                    {
-                        score2 = score1 + 1;
-                    }
+                    score2++;
                 }
 
                 else if (endScreen2)
                 {
+
                     Raylib.DrawText("Batman Won!", 810, 250, 45, Color.WHITE);
                     Raylib.DrawText($"{score1} - {score2}", 790, 350, 45, Color.WHITE);
-                    for (int i = 0; i < scoreinc; i++)
-                    {
-                        score1 = score2 + 1;
-                    }
+                    score1++;
                 }
 
                 else if (drawScreen)
