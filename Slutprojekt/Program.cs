@@ -1,7 +1,8 @@
 ﻿using System;
 using Raylib_cs;
 
-class Program
+class Start
+
 {
     static void Main()
     {
@@ -20,8 +21,6 @@ class Program
 
         int score1 = 0;
         int score2 = 0;
-
-
 
         bool startScreen = true;
         bool endScreen1 = false;
@@ -70,9 +69,10 @@ class Program
                 Raylib.BeginDrawing();
                 Raylib.DrawTexture(startscreen2, 0, 0, Color.WHITE);
                 Raylib.DrawText("Press Enter to Start", 670, 400, 50, Color.WHITE);
+                Raylib.DrawText("Batman use WASD to move and Superman use arrow up, down, left, and right to move", 520, 700, 20, Color.BLUE);
+                Raylib.DrawText("PSST! use F for Batman and right control for Superman for dubble damage", 560, 750, 20, Color.DARKBLUE);
 
                 Raylib.EndDrawing();
-
 
                 if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
                 {
@@ -92,20 +92,14 @@ class Program
 
                 if (endScreen1)
                 {
-
                     Raylib.DrawText("Superman Won!", 760, 250, 45, Color.WHITE);
                     Raylib.DrawText($"{score1} - {score2}", 880, 350, 45, Color.WHITE);
-                    score2++;
                 }
-
                 else if (endScreen2)
                 {
-
                     Raylib.DrawText("Batman Won!", 810, 250, 45, Color.WHITE);
-                    Raylib.DrawText($"{score1} - {score2}", 790, 350, 45, Color.WHITE);
-                    score1++;
+                    Raylib.DrawText($"{score1} - {score2}", 880, 350, 45, Color.WHITE);
                 }
-
                 else if (drawScreen)
                 {
                     Raylib.DrawText("It's a draw!", 810, 250, 45, Color.WHITE);
@@ -116,10 +110,12 @@ class Program
 
                 Raylib.EndDrawing();
 
-
-
                 if (Raylib.IsKeyPressed(KeyboardKey.KEY_R))
                 {
+                    if (endScreen1)
+                        score2 = score2 + 1;
+                    else if (endScreen2)
+                        score1 = score1 + 1;
 
                     endScreen1 = false;
                     endScreen2 = false;
@@ -136,12 +132,8 @@ class Program
             }
 
             // MOVEMENT ****************************************************************************************
-
             if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT)) supermanX += 5;
             if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT)) supermanX -= 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_UP)) supermanY -= 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN)) supermanY += 5;
-
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
             {
@@ -157,9 +149,6 @@ class Program
             {
                 batmanRunning = false;
             }
-
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_W)) batmanY -= 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_S)) batmanY += 5;
 
             if (supermanY + superman.Height > 970)
                 supermanY = 970 - superman.Height;
@@ -182,6 +171,11 @@ class Program
                 player2HP -= damage;
             }
 
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_F))
+            {
+                int damage = random.Next(40, 100);
+                player2HP -= damage;
+            }
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT_SHIFT))
             {
@@ -198,13 +192,16 @@ class Program
                 player1HP -= damage;
             }
 
-
-
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_RIGHT_CONTROL))
+            {
+                int damage = random.Next(40, 100);
+                player1HP -= damage;
+            }
             // MOVEMENT ****************************************************************************************
 
 
-            //**********************************************         
 
+            //**********************************************         
             if (player1HP < 1 && player2HP >= 1)
             {
                 endScreen1 = true;
@@ -222,6 +219,8 @@ class Program
             }
             //**********************************************
 
+
+
             // DRAWING ********************************************************************
             Raylib.BeginDrawing();
 
@@ -230,13 +229,16 @@ class Program
 
             if (supermanPunching)
                 Raylib.DrawTexture(supermanPunch, supermanX, supermanY, Color.WHITE);
+
             else
                 Raylib.DrawTexture(superman, supermanX, supermanY, Color.WHITE);
 
             if (batmanPunching)
                 Raylib.DrawTexture(batmanPunch, batmanX, batmanY, Color.WHITE);
+                
             else if (batmanRunning)
                 Raylib.DrawTexture(batmanRun, batmanX, batmanY, Color.WHITE);
+
             else
                 Raylib.DrawTexture(batman, batmanX, batmanY, Color.WHITE);
 
@@ -247,7 +249,6 @@ class Program
             Raylib.DrawTexture(healthbarV, 1470, 0, Color.WHITE);
             Raylib.DrawText($"Health: {player1HP}", 100, 110, 30, Color.WHITE);
             Raylib.DrawText($"Health: {player2HP}", 1650, 110, 30, Color.WHITE);
-
 
             Raylib.EndDrawing();
             // DRAWING ********************************************************************
