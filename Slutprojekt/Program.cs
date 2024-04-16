@@ -3,17 +3,26 @@ using Raylib_cs;
 
 class Start
 {
+    static void ResetGame(ref int player1HP, ref int player2HP, ref int[] batmanPosition, ref int[] supermanPosition, ref int score1, ref int score2)
+    {
+        player1HP = 320;
+        player2HP = 320;
+        batmanPosition[0] = 500;
+        batmanPosition[1] = 1000;
+        supermanPosition[0] = 1200;
+        supermanPosition[1] = 1000;
+        score1 = 0;
+        score2 = 0;
+    }
+
     static void Main()
     {
         bool fullscreen = false;
 
         Raylib.InitWindow(1920, 1080, "Start of game");
 
-        int batmanX = 500;
-        int batmanY = 1000;
-
-        int supermanX = 1200;
-        int supermanY = 1000;
+        int[] batmanPosition = { 500, 1000 };
+        int[] supermanPosition = { 1200, 1000 };
 
         int player1HP = 320;
         int player2HP = 320;
@@ -116,27 +125,22 @@ class Start
                     endScreen1 = false;
                     endScreen2 = false;
                     drawScreen = false;
-                    player1HP = 320;
-                    player2HP = 320;
-                    batmanX = 500;
-                    batmanY = 1000;
-                    supermanX = 1200;
-                    supermanY = 1000;
+                    ResetGame(ref player1HP, ref player2HP, ref batmanPosition, ref supermanPosition, ref score1, ref score2);
                 }
             }
 
             // MOVEMENT ****************************************************************************************
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT)) supermanX += 5;
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT)) supermanX -= 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT)) supermanPosition[0] += 5;
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT)) supermanPosition[0] -= 5;
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
             {
-                batmanX += 5;
+                batmanPosition[0] += 5;
                 batmanRunning = true;
             }
             else if (Raylib.IsKeyDown(KeyboardKey.KEY_A))
             {
-                batmanX -= 5;
+                batmanPosition[0] -= 5;
                 batmanRunning = true;
             }
             else
@@ -145,11 +149,11 @@ class Start
             }
 
             //*************************************************************** ground level 
-            if (supermanY + superman.Height > 970)
-                supermanY = 970 - superman.Height;
+            if (supermanPosition[1] + superman.Height > 970)
+                supermanPosition[1] = 970 - superman.Height;
 
-            if (batmanY + batman.Height > 985)
-                batmanY = 985 - batman.Height;
+            if (batmanPosition[1] + batman.Height > 985)
+                batmanPosition[1] = 985 - batman.Height;
             //*************************************************************** ground level
             
 
@@ -225,21 +229,21 @@ class Start
             Raylib.DrawTexture(background, 0, 0, Color.WHITE);
 
             if (supermanPunching)
-                Raylib.DrawTexture(supermanPunch, supermanX, supermanY, Color.WHITE);
+                Raylib.DrawTexture(supermanPunch, supermanPosition[0], supermanPosition[1], Color.WHITE);
 
             else
-                Raylib.DrawTexture(superman, supermanX, supermanY, Color.WHITE);
+                Raylib.DrawTexture(superman, supermanPosition[0], supermanPosition[1], Color.WHITE);
 
             if (batmanPunching)
-                Raylib.DrawTexture(batmanPunch, batmanX, batmanY, Color.WHITE);
+                Raylib.DrawTexture(batmanPunch, batmanPosition[0], batmanPosition[1], Color.WHITE);
                 
             else if (batmanRunning)
-                Raylib.DrawTexture(batmanRun, batmanX, batmanY, Color.WHITE);
+                Raylib.DrawTexture(batmanRun, batmanPosition[0], batmanPosition[1], Color.WHITE);
 
             else
-                Raylib.DrawTexture(batman, batmanX, batmanY, Color.WHITE);
+                Raylib.DrawTexture(batman, batmanPosition[0], batmanPosition[1], Color.WHITE);
 
-            Raylib.DrawTexture(BatmanRunLeftTexture, batmanX, batmanY, Color.WHITE);
+            Raylib.DrawTexture(BatmanRunLeftTexture, batmanPosition[0], batmanPosition[1], Color.WHITE);
             Raylib.DrawRectangle(90, 70, player1HP, 32, Color.LIME);
             Raylib.DrawRectangle(1514, 70, player2HP, 32, Color.LIME);
             Raylib.DrawTexture(healthbar, 0, 0, Color.WHITE);
