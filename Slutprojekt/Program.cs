@@ -2,7 +2,6 @@
 using Raylib_cs;
 
 class Start
-
 {
     static void Main()
     {
@@ -30,7 +29,7 @@ class Start
         bool batmanRunning = false;
         bool supermanPunching = false;
 
-        Raylib.SetTargetFPS(59);
+        Raylib.SetTargetFPS(60);
 
         Texture2D background = Raylib.LoadTexture("gothamfinal.png");
         Texture2D batman = Raylib.LoadTexture("batmanstand.png");
@@ -42,7 +41,6 @@ class Start
         Texture2D healthbar = Raylib.LoadTexture("healthbar.png");
         Texture2D healthbarV = Raylib.LoadTexture("healthbarV.png");
         Texture2D BatmanRunLeftTexture = Raylib.LoadTexture("BatmanRunLeft.png");
-
 
         batman.Width = 200;
         batman.Height = 200;
@@ -69,9 +67,8 @@ class Start
                 Raylib.BeginDrawing();
                 Raylib.DrawTexture(startscreen2, 0, 0, Color.WHITE);
                 Raylib.DrawText("Press Enter to Start", 670, 400, 50, Color.WHITE);
-                Raylib.DrawText("Batman use WASD to move and Superman use arrow up, down, left, and right to move", 520, 700, 20, Color.BLUE);
-                Raylib.DrawText("PSST! use F for Batman and right control for Superman for dubble damage", 560, 750, 20, Color.DARKBLUE);
-
+                Raylib.DrawText("Batman use A and D to move and Superman use arrow left and right to move", 520, 700, 20, Color.BLUE);
+                Raylib.DrawText("PSST! use F for Batman and right control for Superman for double damage", 560, 750, 20, Color.DARKBLUE);
                 Raylib.EndDrawing();
 
                 if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
@@ -86,7 +83,6 @@ class Start
 
             if (endScreen1 || endScreen2 || drawScreen)
             {
-                // Game Over Screens
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(Color.RED);
 
@@ -127,8 +123,6 @@ class Start
                     supermanX = 1200;
                     supermanY = 1000;
                 }
-
-                continue;
             }
 
             // MOVEMENT ****************************************************************************************
@@ -150,11 +144,14 @@ class Start
                 batmanRunning = false;
             }
 
+            //*************************************************************** ground level 
             if (supermanY + superman.Height > 970)
                 supermanY = 970 - superman.Height;
 
             if (batmanY + batman.Height > 985)
                 batmanY = 985 - batman.Height;
+            //*************************************************************** ground level
+            
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT_SHIFT))
             {
